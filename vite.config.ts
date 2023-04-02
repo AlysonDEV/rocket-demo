@@ -13,17 +13,31 @@ export default defineConfig({
       '@/': `${import.meta.url}/src/')`,
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @import "./src/assets/scss/style.scss";
+        `
+      }
+    }
+  },
 
   plugins: [
     vue(),
     Components({
-      globs: ['src/components/*.{vue}', 'src/layouts/*.{vue}']
+      dirs: ['src/components', 'src/layouts'],
+      deep: true,
+      dts: "./src/components.d.ts"
+
     }),
     AutoImport({
       imports: ['vue', 'vue-router', {
         axios: [['default', 'axios']]
       }],
-      dirs: ['src/composables', 'src/stores']
+      dirs: ['src/composables', 'src/stores'],
+      dts: "./src/auto-imports.d.ts",
+      vueTemplate: true,
     }),
   ],
 })

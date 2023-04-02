@@ -9,7 +9,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    404: typeof import('./layouts/404.vue')['default']
+    Login: typeof import('./layouts/login.vue')['default']
+    Main: typeof import('./layouts/main.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    VFooter: typeof import('./components/system/v-footer.vue')['default']
   }
 }
